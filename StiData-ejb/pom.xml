@@ -75,6 +75,15 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.4.1208.jre7</version>
 		</dependency>
+		
+		<!-- Dependencia de smile como prueba -->
+		<dependency>
+
+			<groupId>propio.smile</groupId>
+			<artifactId>propio-smile</artifactId>
+			<version>1.0</version>
+
+		</dependency>
 
 
 
