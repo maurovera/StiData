@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "asignatura")
@@ -22,14 +24,31 @@ public class Asignatura implements Serializable{
     @Column(name = "descripcion")
     private String descripcion;
 
+    
+    
     @OneToMany(mappedBy = "asignatura")
-    private List<Tema> listaTemas;
+    //private List<Tema> listaTemas;
+    private List<Tema> listaTemas = new ArrayList<Tema>();
+    
+    
     
 	public Integer getIdAsignatura() {
 		return idAsignatura;
 	}
 
 	
+//	public Asignatura() {
+//		super();
+//		this.listaTemas = new ArrayList<Tema>();
+//		
+//	}
+
+
+
+
+
+
+    @XmlTransient
 	public List<Tema> getListaTemas() {
 		return listaTemas;
 	}
@@ -38,7 +57,6 @@ public class Asignatura implements Serializable{
 	public void setListaTemas(List<Tema> listaTemas) {
 		this.listaTemas = listaTemas;
 	}
-
 
 	public void setIdAsignatura(Integer idAsignatura) {
 		this.idAsignatura = idAsignatura;

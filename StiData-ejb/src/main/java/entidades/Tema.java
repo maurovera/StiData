@@ -73,6 +73,9 @@ public class Tema implements Serializable{
     public void setAsignatura(Asignatura asignatura) {
         this.asignatura = asignatura;
     }
-
+    @Override
+    public String toString() {
+        return "model.Tema[ idTema=" + idTema + " ]";
+    }
     
 }
