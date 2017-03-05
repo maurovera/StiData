@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import entidades.Asignatura;
 import entidades.Tema;
@@ -19,31 +20,48 @@ public class AsignaturaBean implements AsignaturaLocal, AsignaturaRemote {
 
 	@Override
 	public void crearAsignatura(Asignatura asignatura) {
-		// TODO Auto-generated method stub
+		em.persist(asignatura);
 
 	}
 
 	@Override
-	public void modifAsignatura(Integer id) {
-		// TODO Auto-generated method stub
+	public void modifAsignatura(Asignatura asignatura) {
+		em.merge(asignatura);
 
 	}
 
 	@Override
 	public void elimAsignatura(Integer id) {
-		// TODO Auto-generated method stub
+		Asignatura a = verAsignatura(id);
+		em.remove(a);
 
 	}
 
 	public Asignatura verAsignatura(Integer id) {
 		Asignatura asig = em.find(Asignatura.class, id);
 		List<Tema> temaLista = new ArrayList<Tema>();
-	    temaLista = asig.getListaTemas();
-		
+		temaLista = asig.getListaTemas();
+
 		for (Tema t : temaLista) {
-            System.out.println(t.getNombre());
-        }
+			System.out.println(t.getNombre());
+		}
 		return asig;
 	}
 
+	@Override
+	public List<Asignatura> listaAsignatura() {
+		List<Asignatura> listaAsignatura = new ArrayList<Asignatura>();
+		try {
+			String jpql = "SELECT t FROM Asignatura t";
+			Query query = em.createQuery(jpql);
+			List<Asignatura> resultado = query.getResultList();
+			listaAsignatura.addAll(resultado);
+			for (Asignatura a : resultado) {
+				System.out.println(a.getDescripcion());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listaAsignatura;
+	}
 }
