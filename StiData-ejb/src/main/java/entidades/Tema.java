@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "tema")
@@ -31,7 +32,7 @@ public class Tema implements Serializable{
 
     
     @JoinColumn(name = "asignatura", referencedColumnName = "id_asignatura")
-    @ManyToOne
+    @ManyToOne 
     private Asignatura asignatura;
     
 	public Integer getIdTema() {
@@ -65,7 +66,7 @@ public class Tema implements Serializable{
 	public void setPeso(Integer peso) {
 		this.peso = peso;
 	}
-    
+	@XmlTransient
 	public Asignatura getAsignatura() {
         return asignatura;
     }

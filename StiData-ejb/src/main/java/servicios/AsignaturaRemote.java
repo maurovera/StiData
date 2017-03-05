@@ -1,5 +1,7 @@
 package servicios;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 
 import entidades.Asignatura;
