@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,7 +26,13 @@ public class AsignaturaServicio {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/obtener/{id}")
 	public Asignatura obtenerAsig(@PathParam("id") Integer id) {
-		Asignatura asignatura = asignaturaBean.verAsignatura(id);
+		Asignatura asignatura = new Asignatura();
+		try {
+		asignatura = asignaturaBean.verAsignatura(id);
+		} catch (Exception e) {	
+			   System.out.println(e);		
+	}
 		return asignatura;
 	}
 }
+
