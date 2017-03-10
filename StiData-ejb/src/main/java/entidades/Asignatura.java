@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
@@ -31,7 +32,8 @@ public class Asignatura implements Serializable {
 	public Integer getIdAsignatura() {
 		return idAsignatura;
 	}
-
+	
+	@Transient
 	public List<Tema> getListaTemas() {
 		return listaTemas;
 	}
