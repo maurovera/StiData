@@ -70,7 +70,7 @@ public class HerramientaSmile {
 
 			net.setNodePosition("Tema1", 30, 100, 60, 30);
 
-			net.writeFile("/home/mauro/Documentos/conceptoTema.xdsl");
+			net.writeFile("/home/mauro/Documentos/TemasNuevos.xdsl");
 
 		//} catch (SMILEException e) {
 			//System.out.println("no funca");
