@@ -1,11 +1,14 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,106 +20,118 @@ public class Tarea implements Serializable{
     @Column(name = "id_tarea")
     private Integer idtarea;
     
+    @JoinColumn(name = "curso", referencedColumnName = "id_curso")
+    @ManyToOne 
+    private Curso curso;
+    
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "asignatura")
-    private String asignatura;
+    @Column(name = "descripcion")
+    private String descripcion;
     
-    /**
-     * Seria conceptos separados por coma por el momento 
-     **/
-    @Column(name = "conceptos")
-    private String conceptos;
+    /**Lista de temas separados por coma*/
+    @Column(name="temas_selec")
+    private String temasSeleccionados;
     
-    /**
-     * Seria una lista de temas
-     **/
-	@Column(name = "temas")
-    private String temas;
-	
-	/**
-     * Seria una lista de ejercicios
-     **/
-	@Column(name = "ejercicios")
-    private String ejercicios;
-	
-	
-	/**
-     * Seria una lista de resultados
-     **/
-	@Column(name = "resultados")
-    private String resultados;
-
+    /**Lista de conceptos separados por coma*/
+    @Column(name="conceptos_selec")
+    private String conceptosSeleccionados;
+    
+    
+    @Column(name = "fecha_inicio")
+    private Date fechaInicio;
+    
+    @Column(name = "fecha_fin")
+    private Date fechaFin;
+    
+    @Column(name="estado_tarea")
+    private boolean estadoTarea;
+    
+    @Column(name="tiempo")
+    private Date tiempo;
 
 	public Integer getIdtarea() {
 		return idtarea;
 	}
 
-
 	public void setIdtarea(Integer idtarea) {
 		this.idtarea = idtarea;
 	}
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
-	public String getAsignatura() {
-		return asignatura;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-
-	public void setAsignatura(String asignatura) {
-		this.asignatura = asignatura;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
-
-	public String getConceptos() {
-		return conceptos;
+	public String getTemasSeleccionados() {
+		return temasSeleccionados;
 	}
 
-
-	public void setConceptos(String conceptos) {
-		this.conceptos = conceptos;
+	public void setTemasSeleccionados(String temasSeleccionados) {
+		this.temasSeleccionados = temasSeleccionados;
 	}
 
-
-	public String getTemas() {
-		return temas;
+	public String getConceptosSeleccionados() {
+		return conceptosSeleccionados;
 	}
 
-
-	public void setTemas(String temas) {
-		this.temas = temas;
+	public void setConceptosSeleccionados(String conceptosSeleccionados) {
+		this.conceptosSeleccionados = conceptosSeleccionados;
 	}
 
-
-	public String getEjercicios() {
-		return ejercicios;
+	public Date getFechaInicio() {
+		return fechaInicio;
 	}
 
-
-	public void setEjercicios(String ejercicios) {
-		this.ejercicios = ejercicios;
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
 
-
-	public String getResultados() {
-		return resultados;
+	public Date getFechaFin() {
+		return fechaFin;
 	}
 
-
-	public void setResultados(String resultados) {
-		this.resultados = resultados;
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
-	
 
+	public boolean isEstadoTarea() {
+		return estadoTarea;
+	}
+
+	public void setEstadoTarea(boolean estadoTarea) {
+		this.estadoTarea = estadoTarea;
+	}
+
+	public Date getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(Date tiempo) {
+		this.tiempo = tiempo;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+    
+    
+    
+    
 }
