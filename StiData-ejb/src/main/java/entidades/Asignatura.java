@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,10 +26,9 @@ public class Asignatura implements Serializable {
 	@Column(name = "descripcion")
 	private String descripcion;
 
-	@OneToMany(mappedBy = "asignatura")
-	// private List<Tema> listaTemas;
+	@OneToMany(mappedBy = "asignatura", cascade = CascadeType.ALL)
 	private List<Tema> listaTemas = new ArrayList<Tema>();
-
+	
 	public Integer getIdAsignatura() {
 		return idAsignatura;
 	}

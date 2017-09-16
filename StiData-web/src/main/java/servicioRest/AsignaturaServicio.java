@@ -16,11 +16,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import dto.AsignaturaDTO;
+import dto.TareaDTO;
 import servicios.AsignaturaBean;
 import entidades.Asignatura;
 import entidades.Tema;
 
-@Path("asignatura")
+@Path("asignaturaServicio")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Stateless
@@ -38,21 +40,22 @@ public class AsignaturaServicio {
 	public List<Asignatura> listaAsignaturas() {
 		return asignaturaBean.listaAsignatura();
 	}
-	
-	//trae una asignatura
+
+	/**
+	 * Trae una asignatura
+	 * */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/asignaturas/{id}")
 	public Asignatura obtenerAsig(@PathParam("id") Integer id) {
 		Asignatura asignatura = new Asignatura();
 		try {
-		asignatura = asignaturaBean.verAsignatura(id);
-		} catch (Exception e) {	
-			   System.out.println(e);		
-	}
+			asignatura = asignaturaBean.verAsignatura(id);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		return asignatura;
 	}
-	
 
 	/**
 	 * Modificar una asignatura
@@ -68,10 +71,9 @@ public class AsignaturaServicio {
 		return Response.status(201).entity(result).build();
 
 	}
-	
-	
+
 	/**
-	 * Crear un tema
+	 * Crear una Asignatura
 	 * 
 	 **/
 	@PUT
@@ -84,9 +86,8 @@ public class AsignaturaServicio {
 		return Response.status(201).entity(result).build();
 	}
 
-
 	/**
-	 * Eliminar un tema
+	 * Eliminar una Asignatura
 	 * 
 	 ***/
 	@DELETE
@@ -98,5 +99,53 @@ public class AsignaturaServicio {
 		return Response.status(200).entity(result).build();
 
 	}
-}
+	
+	
+	/**
+	 * Crear una asignatura con temas. Esta en prueba esto.
+	 * 
+	 **/
+	@PUT
+	@Path("/asignaturas/guardar")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response guardar(AsignaturaDTO asignaturaDto) {
+		asignaturaBean.guardarAsigConTema(asignaturaDto);
+		String result = "Asignatura con temas Creado : " + asignaturaDto.getDescripcion();
+		return Response.status(201).entity(result).build();
 
+	}
+
+	
+	/**
+	 * Mod una asignatura con temas. Esta en prueba esto.
+	 * 
+	 **/
+	@POST
+	@Path("/asignaturas/mod")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response modificarAsig(AsignaturaDTO asignaturaDto) {
+		asignaturaBean.modificarAsigConTema(asignaturaDto);
+		String result = "Asignatura con temas Modificado : " + asignaturaDto.getDescripcion();
+		return Response.status(201).entity(result).build();
+
+	}
+	
+	
+	/**
+	 * Eliminar una Asignatura con temas
+	 * 
+	 ***/
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/asignaturas/del/{id}")
+	public Response eliminarAsigConTemas(@PathParam("id") Integer id) {
+		asignaturaBean.eliminarAsigConTema(id);
+		String result = "Asig con tema Eliminada ";
+		return Response.status(200).entity(result).build();
+
+	}
+
+	
+}
