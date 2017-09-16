@@ -15,33 +15,31 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "concepto")
-public class Concepto implements Serializable{
+public class Concepto implements Serializable {
 	private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue
-    @Column(name = "id_concepto")
-    private Integer idConcepto;
-    
-    @Column(name = "nombre")
-    private String nombre;
+	@Id
+	@GeneratedValue
+	@Column(name = "id_concepto")
+	private Integer idConcepto;
 
-    @Column(name = "apriori")
-    private Double apriori;
-    
-    @Column(name = "peso")
-    private Double peso;
-    
+	@Column(name = "nombre")
+	private String nombre;
+
+	@Column(name = "apriori")
+	private Double apriori;
+
+	@Column(name = "peso")
+	private Double peso;
+
 	@JoinColumn(name = "tema", referencedColumnName = "id_tema")
-    @ManyToOne
-    private Tema tema;
-	
-	  @JoinTable(name = "ejercicio_concepto", joinColumns = {
-		        @JoinColumn(name = "id_concepto", referencedColumnName = "id_concepto")}, inverseJoinColumns = {
-		        @JoinColumn(name = "id_ejercicio", referencedColumnName = "id_ejercicio")})
-		    @ManyToMany
-		    private List<Ejercicio> listaEjercicio;
-	
-    public Double getApriori() {
+	@ManyToOne
+	private Tema tema;
+
+	@JoinTable(name = "ejercicio_concepto", joinColumns = { @JoinColumn(name = "id_concepto", referencedColumnName = "id_concepto") }, inverseJoinColumns = { @JoinColumn(name = "id_ejercicio", referencedColumnName = "id_ejercicio") })
+	@ManyToMany
+	private List<Ejercicio> listaEjercicio;
+
+	public Double getApriori() {
 		return apriori;
 	}
 
@@ -49,7 +47,6 @@ public class Concepto implements Serializable{
 		this.apriori = apriori;
 	}
 
-    
 	public Tema getTema() {
 		return tema;
 	}
@@ -83,7 +80,7 @@ public class Concepto implements Serializable{
 	}
 
 	@Override
-    public String toString() {
-        return "model.Concepto[ idConcepto=" + idConcepto + " ]";
-    }
+	public String toString() {
+		return "model.Concepto[ idConcepto=" + idConcepto + " ]";
+	}
 }
