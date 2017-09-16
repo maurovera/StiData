@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 import servicios.TemaBean;
 import entidades.Tema;
 
-@Path("ServicioTema")
+@Path("temaServicio")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Stateless
