@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "alumno")
-public class Alumno implements Serializable{
+public class Alumno implements Serializable {
 	private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
