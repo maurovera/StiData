@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import servicios.TareaBean;
+import dto.TareaDTO;
 import entidades.Tarea;
 
 
@@ -51,6 +52,37 @@ public class TareaServicio {
 		return t;
 	}
 	
+	/**
+	 * Crear una Tarea.... Este no se usa
+	 * 
+	 * 
+	 **/
+	@PUT
+	@Path("/tareasConEjercicios")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response creaTareaEjercicios(Tarea tarea) {
+		tareaServicio.crearTareaConEjercicios(tarea,tarea.getListaTareas());
+		String result = "Tarea Creado : " + tarea.getNombre();
+		return Response.status(201).entity(result).build();
+
+	}
 	
-	
+	/**
+	 * Crear una Tarea
+	 * 
+	 **/
+	@PUT
+	@Path("/guardar")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response guardar(TareaDTO tareadto) {
+		tareaServicio.guardar(tareadto);
+		String result = "Tarea Creado : " + tareadto.getNombre();
+		return Response.status(201).entity(result).build();
+
+	}
+
+
+
 }

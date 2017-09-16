@@ -1,4 +1,4 @@
-package entidades;
+package dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,58 +7,38 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlTransient;
 
-@Entity
-@Table(name = "tarea")
-public class Tarea implements Serializable{
-	private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue
-    @Column(name = "id_tarea")
-    private Integer idtarea;
-    
-	@JoinColumn(name = "curso", referencedColumnName = "id_curso")
-    @ManyToOne 
-    private Curso curso;
-    
-    @Column(name = "nombre")
-    private String nombre;
+import entidades.Curso;
+import entidades.TareaDetalle;
 
-    @Column(name = "descripcion")
+public class TareaDTO  implements Serializable{
+    
+	private Integer idtarea;
+    
+	private Integer curso;
+    
+	private String nombre;
+
     private String descripcion;
     
-    /**Lista de temas separados por coma*/
-    @Column(name="temas_selec")
     private String temasSeleccionados;
     
-    /**Lista de conceptos separados por coma*/
-    @Column(name="conceptos_selec")
     private String conceptosSeleccionados;
     
-    
-    @Column(name = "fecha_inicio")
     private Date fechaInicio;
     
-    @Column(name = "fecha_fin")
     private Date fechaFin;
     
-    @Column(name="estado_tarea")
     private boolean estadoTarea;
     
-    @Column(name="tiempo")
     private Date tiempo;
-    
-    @OneToMany(mappedBy="tarea", cascade = CascadeType.ALL)
+
     private List<TareaDetalle> listaTareas = new ArrayList<TareaDetalle>();
-    
 
 	public Integer getIdtarea() {
 		return idtarea;
@@ -66,6 +46,14 @@ public class Tarea implements Serializable{
 
 	public void setIdtarea(Integer idtarea) {
 		this.idtarea = idtarea;
+	}
+
+	public Integer getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Integer curso) {
+		this.curso = curso;
 	}
 
 	public String getNombre() {
@@ -132,16 +120,7 @@ public class Tarea implements Serializable{
 		this.tiempo = tiempo;
 	}
 
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
-	}
-    
-	@XmlTransient
-    public List<TareaDetalle> getListaTareas() {
+	public List<TareaDetalle> getListaTareas() {
 		return listaTareas;
 	}
 
@@ -151,4 +130,7 @@ public class Tarea implements Serializable{
 
     
     
+    
+    
+
 }
